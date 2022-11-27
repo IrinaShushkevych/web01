@@ -1,6 +1,6 @@
 from datetime import datetime
-from power9bot.classes.name import Name
-from power9bot.classes.phone import Phone
+from classes.addressbook.name import Name
+from classes.addressbook.phone import Phone
 
 
 class Record:
@@ -10,6 +10,18 @@ class Record:
         self.birthday = ''
         self.address = ''
         self.email = ''
+
+    def __getitem__(self, key):
+        if key == 'name':
+            return self.name
+        if key == 'phones':
+            return self.phones
+        if key == 'birthday':
+            return self.birthday
+        if key == 'address':
+            return self.address
+        if key == 'email':
+            return self.email
 
     def __str__(self):
         str_name = f'| Name {self.name.value} |'

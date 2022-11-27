@@ -66,3 +66,11 @@ COMMANDS_HELP = [
     ' - sort folder <folder>',
     ' - goodbye || close || exit || quit'
 ]
+
+HEADER_ADDRESSBOOK = {
+    'name': 'Name',
+    'address': 'Address',
+    'email': 'Email',
+    'birthday': 'Birthday',
+    'phones': 'Phone'
+}

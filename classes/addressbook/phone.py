@@ -1,4 +1,4 @@
-from power9bot.classes.field import Field
+from classes.addressbook.field import Field
 
 
 class Phone(Field):

@@ -1,9 +1,8 @@
-from power9bot.classes.helper import Helper
+from classes import Helper
 
 
 def main():
     with Helper() as helper:
-
         helper.running()
 
 
