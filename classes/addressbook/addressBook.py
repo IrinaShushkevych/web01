@@ -142,7 +142,6 @@ class AddressBook(UserDict):
         """
         Find all contact with give <key>
         """
-        # self.print_contacts_head()
         key_all = False
         lists = []
 
@@ -164,7 +163,6 @@ class AddressBook(UserDict):
 
             if key_is:
                 lists.append(self.data[name])
-                # self.print_contacts([self.data[name]])
 
         if not key_all:
             raise ValueError(f'Contacts for {key} not found')
@@ -224,20 +222,6 @@ class AddressBook(UserDict):
         """
         Printing all contacts
         """
-        # if not number_on_page:
-        #     number_on_page = 3
-
-        # stock = self.iterator()
-        # page = 1
-        # self.print_contacts_head()
-        # while True:
-        #     try:
-        #         for _ in range(number_on_page):
-        #             self.print_contacts([next(stock)])
-
-        #         page += 1
-        #     except StopIteration:
-        #         break
         return self.data.values()
 
     def show_birthdays(self, days):
@@ -245,7 +229,6 @@ class AddressBook(UserDict):
         Printing all contacts who will have birthday in <days>
         """
         list_birthday = []
-        # self.print_contacts_head()
         for rec in self.data.values():
 
             if rec.birthday:
@@ -254,78 +237,13 @@ class AddressBook(UserDict):
                 if days_to <= days:
                     list_birthday.append(rec)
         return list_birthday
-        # self.print_contacts(list_birthday)
 
     def show_contact(self, name):
         """
         Printing contact with given <name>
         """
-        # self.print_contacts_head()
         if name in self.data:
-            # self.print_contacts([self.data[name]])
             return [self.data[name]]
         else:
             raise ValueError(
                 f"Contact with the name '{name}' does not exist. Try a different name.")
-
-    # def delimiter_text(self, text, length):
-    #     idx_begin = 0
-    #     idx_end = length
-    #     lists = []
-    #     while idx_begin <= len(text):
-    #         lists.append(text[idx_begin: idx_end])
-    #         idx_begin = idx_end
-    #         idx_end += length
-    #     return lists
-
-    # def print_contacts_head(self):
-    #     columns = ['Name', 'Address', 'Email', 'Birthday', 'Phones']
-    #     table_width = get_terminal_size().columns - 3
-    #     column_width = (get_terminal_size().columns - 2) // 5 - 1
-    #     print('-' * table_width)
-    #     print_string = '|'
-    #     for _ in columns:
-    #         print_string += ' {:^' + str(column_width - 2) + '} |'
-    #     print(print_string.format(*columns))
-    #     print('-' * table_width)
-
-    # def print_contacts(self, contacts=[]):
-    #     columns = ['Name', 'Address', 'Email', 'Birthday', 'Phones']
-    #     table_width = get_terminal_size().columns - 3
-    #     column_width = (get_terminal_size().columns - 2) // 5 - 1
-    #     print_string = '|'
-    #     for _ in columns:
-    #         print_string += ' {:^' + str(column_width - 2) + '} |'
-    #     for contact in contacts:
-    #         cnt_rows = 0
-    #         name = self.delimiter_text(str(contact.name).capitalize(), column_width - 2)
-    #         if len(name) > cnt_rows:
-    #             cnt_rows = len(name)
-    #         address = self.delimiter_text(contact.address, column_width - 2)
-    #         if len(address) > cnt_rows:
-    #             cnt_rows = len(address)
-    #         email = self.delimiter_text(str(contact.email), column_width - 2)
-    #         if len(email) > cnt_rows:
-    #             cnt_rows = len(email)
-    #         birthday = self.delimiter_text(str(contact.birthday), column_width - 2)
-    #         if len(birthday) > cnt_rows:
-    #             cnt_rows = len(birthday)
-    #         phones = []
-    #         for phone in contact.phones:
-    #             if phone:
-    #                 phones.append(phone.value)
-    #         phones = phones if phones else ['']
-    #         for i in range(cnt_rows):
-    #             name_print = name[i] if i < len(name) else ''
-    #             address_print = address[i] if i < len(address) else ''
-    #             email_print = email[i] if i < len(email) else ''
-    #             birthday_print = birthday[i] if i < len(birthday) else ''
-    #             phones_print = phones[i] if i < len(phones) else ''
-    #             print(print_string.format(
-    #                 name_print,
-    #                 address_print,
-    #                 email_print,
-    #                 birthday_print,
-    #                 phones_print
-    #             ))
-    #         print('-' * table_width)

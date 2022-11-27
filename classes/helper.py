@@ -3,9 +3,9 @@ import pickle
 
 from classes.addressbook import AddressBook
 from classes.notebook import NoteBook
-from classes.output import OutputList
-from classes.output import OutputTable
-from classes.output import OutputNote
+from classes.output import OutputList, OutputMessage, OutputTable, OutputNote
+# from classes.output import OutputTable
+# from classes.output import OutputNote
 from classes import FileSorting
 from data.constants import COMMANDS_HELP, HEADER_ADDRESSBOOK
 
@@ -104,7 +104,7 @@ class Helper:
         Command: hello
         Greetings from the POWER9 bot to the USER
         """
-        print('How can I help you?')
+        OutputMessage('How can I help you?').output()
 
     def func_exit(self):
         """
@@ -112,7 +112,7 @@ class Helper:
         Terminates the work of the POWER9 bot
         All data is saved
         """
-        print('Goodbye!')
+        OutputMessage('Goodbye!').output()
         quit()
 
     def func_add_contact(self, name=None, *args):
@@ -124,7 +124,7 @@ class Helper:
         err = self.func_add_contact.__doc__
         self.check_args(1, 0, err, name, *args)
         self.addressbook.add_contact(name)
-        print(f'Contact {name} added to the book')
+        OutputMessage(f'Contact {name} added to the book').output()
 
     def func_remove_contact(self, name=None, *args):
         """
@@ -135,7 +135,7 @@ class Helper:
         err = self.func_remove_contact.__doc__
         self.check_args(1, 0, err, name, *args)
         self.addressbook.remove_contact(name)
-        print(f'Contact {name} removed from the book')
+        OutputMessage(f'Contact {name} removed from the book').output()
 
     def func_change_contact(self, name_old=None, name_new=None, *args):
         """
@@ -146,7 +146,7 @@ class Helper:
         err = self.func_change_contact.__doc__
         self.check_args(2, 0, err, name_old, name_new, *args)
         self.addressbook.change_contact(name_old, name_new)
-        print(f"{name_old}'s contact name has been changed")
+        OutputMessage(f"{name_old}'s contact name has been changed").output()
 
     def func_add_address(self, name=None, *args):
         """
@@ -159,7 +159,7 @@ class Helper:
         self.check_args(2, 1, err, name, *args)
         address = ' '.join(args)
         self.addressbook.add_address(name, address)
-        print(f"Address '{address}' added to {name}'s contact")
+        OutputMessage(f"Address '{address}' added to {name}'s contact").output()
 
     def func_remove_address(self, name=None, *args):
         """
@@ -170,7 +170,7 @@ class Helper:
         err = self.func_remove_address.__doc__
         self.check_args(1, 0, err, name, *args)
         self.addressbook.remove_address(name)
-        print(f"Address removed from {name}'s contact")
+        OutputMessage(f"Address removed from {name}'s contact").output()
 
     def func_change_address(self, name=None, *args):
         """
@@ -183,7 +183,7 @@ class Helper:
         self.check_args(2, 1, err, name, *args)
         address = ' '.join(args)
         self.addressbook.change_address(name, address)
-        print(f"{name}'s contact address has been changed to '{address}'")
+        OutputMessage(f"{name}'s contact address has been changed to '{address}'").output()
 
     def func_add_email(self, name=None, email=None, *args):
         """
@@ -194,7 +194,7 @@ class Helper:
         err = self.func_add_email.__doc__
         self.check_args(2, 0, err, name, email, *args)
         self.addressbook.add_email(name, email)
-        print(f"E-mail '{email}' added to {name}'s contact")
+        OutputMessage(f"E-mail '{email}' added to {name}'s contact").output()
 
     def func_remove_email(self, name=None, *args):
         """
@@ -205,7 +205,7 @@ class Helper:
         err = self.func_remove_email.__doc__
         self.check_args(1, 0, err, name, *args)
         self.addressbook.remove_email(name)
-        print(f"E-mail removed from {name}'s contact")
+        OutputMessage(f"E-mail removed from {name}'s contact").output()
 
     def func_change_email(self, name=None, email=None, *args):
         """
@@ -216,7 +216,7 @@ class Helper:
         err = self.func_change_email.__doc__
         self.check_args(2, 0, err, name, email, *args)
         self.addressbook.change_email(name, email)
-        print(f"{name}'s contact e-mail has been changed to '{email}'")
+        OutputMessage(f"{name}'s contact e-mail has been changed to '{email}'").output()
 
     def func_add_birthday(self, name=None, birthday=None, *args):
         """
@@ -228,7 +228,7 @@ class Helper:
         err = self.func_add_birthday.__doc__
         self.check_args(2, 0, err, name, birthday, *args)
         self.addressbook.add_birthday(name, birthday)
-        print(f"Date of birthday '{birthday}' added to {name}'s contact")
+        OutputMessage(f"Date of birthday '{birthday}' added to {name}'s contact").output()
 
     def func_remove_birthday(self, name=None, *args):
         """
@@ -239,7 +239,7 @@ class Helper:
         err = self.func_remove_birthday.__doc__
         self.check_args(1, 0, err, name, *args)
         self.addressbook.remove_birthday(name)
-        print(f"Date of birthday removed from {name}'s contact")
+        OutputMessage(f"Date of birthday removed from {name}'s contact").output()
 
     def func_change_birthday(self, name=None, birthday=None, *args):
         """
@@ -251,7 +251,7 @@ class Helper:
         err = self.func_change_birthday.__doc__
         self.check_args(2, 0, err, name, birthday, *args)
         self.addressbook.change_birthday(name, birthday)
-        print(f"{name}'s contact birthday has been changed to '{birthday}'")
+        OutputMessage(f"{name}'s contact birthday has been changed to '{birthday}'").output()
 
     def func_add_phone(self, name=None, phone=None, *args):
         """
@@ -263,7 +263,7 @@ class Helper:
         err = self.func_add_phone.__doc__
         self.check_args(2, 0, err, name, phone, *args)
         self.addressbook.add_phone(name, phone)
-        print(f"Phone '{phone}' added to {name}'s contact")
+        OutputMessage(f"Phone '{phone}' added to {name}'s contact").output()
 
     def func_remove_phone(self, name=None, phone=None, *args):
         """
@@ -275,7 +275,7 @@ class Helper:
         err = self.func_remove_phone.__doc__
         self.check_args(2, 0, err, name, phone, *args)
         self.addressbook.remove_phone(name, phone)
-        print(f"Phone '{phone}' removed from {name}'s contact")
+        OutputMessage(f"Phone '{phone}' removed from {name}'s contact").output()
 
     def func_change_phone(self, name=None, phone_old=None, phone_new=None, *args):
         """
@@ -288,7 +288,7 @@ class Helper:
         err = self.func_change_phone.__doc__
         self.check_args(3, 0, err, name, phone_old, phone_new, *args)
         self.addressbook.change_phone(name, phone_old, phone_new)
-        print(f"Contact {name}'s phone number '{phone_old}' has been changed to '{phone_new}'")
+        OutputMessage(f"Contact {name}'s phone number '{phone_old}' has been changed to '{phone_new}'").output()
 
     def func_show_all_contacts(self):
         """
@@ -297,7 +297,6 @@ class Helper:
         """
         result = self.addressbook.show_all_contact()
         OutputTable(result, HEADER_ADDRESSBOOK).output()
-
 
     def func_show_contact(self, name=None, *args):
         """
@@ -310,7 +309,6 @@ class Helper:
         result = self.addressbook.show_contact(name)
         OutputTable(result, HEADER_ADDRESSBOOK).output()
 
-
     def func_find_contact(self, key='', *args):
         """
         Command: show contact <key>
@@ -321,7 +319,6 @@ class Helper:
             raise ValueError(self.func_find_contact.__doc__)
         result = self.addressbook.find_contact(key)
         OutputTable(result, HEADER_ADDRESSBOOK).output()
-
 
     def func_show_birthdays(self, days, *args):
         """
@@ -347,7 +344,7 @@ class Helper:
         err = self.func_add_note.__doc__
         self.check_args(1, 0, err, title, *args)
         self.notebook.add_note(title)
-        print(f"Added note with title '{title}'")
+        OutputMessage(f"Added note with title '{title}'").output()
 
     def func_remove_note(self, title=None, *args):
         """
@@ -358,7 +355,7 @@ class Helper:
         err = self.func_remove_note.__doc__
         self.check_args(1, 0, err, title, *args)
         self.notebook.delete_note(title)
-        print(f"The note with the title '{title}' has been deleted")
+        OutputMessage(f"The note with the title '{title}' has been deleted").output()
 
     def func_change_note(self, title_old=None, title_new=None, *args):
         """
@@ -369,7 +366,7 @@ class Helper:
         err = self.func_change_note.__doc__
         self.check_args(2, 0, err, title_old, title_new, *args)
         self.notebook.change_note(title_old, title_new)
-        print(f"'{title_old}' note has its title changed to '{title_new}'")
+        OutputMessage(f"'{title_old}' note has its title changed to '{title_new}'").output()
 
     def func_add_text(self, title=None, *args):
         """
@@ -382,7 +379,7 @@ class Helper:
         self.check_args(2, 1, err, title, *args)
         text = ' '.join(args)
         self.notebook.add_text(title, text)
-        print(f"Added text to the note titled '{title}'")
+        OutputMessage(f"Added text to the note titled '{title}'").output()
 
     def func_remove_text(self, title=None, *args):
         """
@@ -393,7 +390,7 @@ class Helper:
         err = self.func_remove_text.__doc__
         self.check_args(1, 0, err, title, *args)
         self.notebook.edit_text(title, '')
-        print(f"Text removed from the note with title '{title}'")
+        OutputMessage(f"Text removed from the note with title '{title}'").output()
 
     def func_change_text(self, title=None, *args):
         """
@@ -406,7 +403,7 @@ class Helper:
         self.check_args(2, 1, err, title, *args)
         text = ' '.join(args)
         self.notebook.edit_text(title, text)
-        print(f"Text changed in the note titled '{title}'")
+        OutputMessage(f"Text changed in the note titled '{title}'").output()
 
     def func_add_tag(self, title=None, tag=None, *args):
         """
@@ -417,7 +414,7 @@ class Helper:
         err = self.func_add_tag.__doc__
         self.check_args(2, 0, err, title, tag, *args)
         self.notebook.add_tag(title, tag)
-        print(f"Added '{tag}' to the note titled '{title}'")
+        OutputMessage(f"Added '{tag}' to the note titled '{title}'").output()
 
     def func_remove_tag(self, title=None, tag=None, *args):
         """
@@ -428,7 +425,7 @@ class Helper:
         err = self.func_remove_tag.__doc__
         self.check_args(2, 0, err, title, tag, *args)
         self.notebook.remove_tag(title, tag)
-        print(f"Tag '{tag}' removed from the note with title '{title}'")
+        OutputMessage(f"Tag '{tag}' removed from the note with title '{title}'").output()
 
     def func_change_tag(self, title=None, old_tag=None, new_tag=None, *args):
         """
@@ -439,7 +436,7 @@ class Helper:
         err = self.func_change_tag.__doc__
         self.check_args(3, 0, err, title, old_tag, new_tag, *args)
         self.notebook.change_tag(title, old_tag, new_tag)
-        print(f"The tag '{old_tag}' has been changed to '{new_tag}' in the note titled '{title}'")
+        OutputMessage(f"The tag '{old_tag}' has been changed to '{new_tag}' in the note titled '{title}'").output()
 
     def func_show_all_notes(self, flag=None, *args):
         """
@@ -563,9 +560,8 @@ class Helper:
         if not list_cmd:
             pass
         if list_cmd:
-            print('Maybe you wanted to use one of this commands:')
-            for element in list_cmd:
-                print('     ', element)
+            OutputMessage('Maybe you wanted to use one of this commands:').output()
+            OutputList(list_cmd).output()
         else:
             raise IndexError('Command is wrong')
 
@@ -575,7 +571,7 @@ class Helper:
             try:
                 self.handler(cmd)
             except Exception as e:
-                print(e)
+                OutputMessage(e).output()
 
     def levenshtein(self, str_1, str_2):
         n, m = len(str_1), len(str_2)
