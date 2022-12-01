@@ -1,7 +1,7 @@
 import shutil
 import os
 from datetime import datetime
-from power9bot.data import constants
+from data import constants
 
 
 class FileSorting:
